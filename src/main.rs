@@ -13,7 +13,7 @@ fn decode_bencoded_value(encoded_value: &str) -> serde_json::Value {
         let string = &encoded_value[colon_index + 1..colon_index + 1 + number as usize];
         return serde_json::Value::String(string.to_string());
     } else if start_with == 'i' {
-        let decoded: i32 = serde_bencode::from_str(&encoded_value).unwrap();
+        let decoded: i64 = serde_bencode::from_str(&encoded_value).unwrap();
         return serde_json::Value::Number(decoded.into());
     } else {
         panic!("Unhandled encoded value: {}", encoded_value)
